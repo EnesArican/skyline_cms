@@ -439,9 +439,20 @@ table.dataTable thead .sorting:after {
     margin: 63px 0 3px;
 }
 
-.btn{
+#editButtons a{
 	width: 73px;
 }
+
+#btnFormSubmit{
+	width: 93px;
+	
+}
+
+.serverSideError{
+	color: red
+}
+
+
 
 
 

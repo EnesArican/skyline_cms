@@ -25,17 +25,38 @@ $(document).ready(function () {
 	        else {
 	            table.$('tr.selected').removeClass('selected');
 	            $(this).addClass('selected');
-	            activateButtons();
+	            
+                
+	            var id = $(this).find('td:first').text();	// get id of selected row
+	            activateButtons(id);
 	        }
 	});
 	
 	
-	function activateButtons(){
+	function activateButtons(id){
 		
 		$('#update').removeClass('btn-outline');
 		$('#delete').removeClass('btn-outline');
 		
+		
+		// edit update and delete links variable
+		// and enable modal to be displayed when delete button is clicked.
+		
+		$('#update').attr('href', 'formUpdateProperty?theId=' + id);
+		$('#deleteModalButton').attr('href', 'formDeleteProperty?theId=' + id);
+		$('#delete').attr('data-toggle', 'modal');
+		
+		
+     
+		
+		
+		
 	}
+	
+	
+	
+	
+	
 	
 });
 

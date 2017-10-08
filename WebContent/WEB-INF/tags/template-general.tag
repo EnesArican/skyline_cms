@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%// attribute name="title"  required="true" rtexprvalue="true" %>
+
 <%@ attribute name="content" fragment="true" %>
 <%@ attribute name="header" fragment="true" %>
 <%@ attribute name="footer" fragment="true" %>
@@ -219,11 +219,21 @@
                         <li>
                             <a href="dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+                       
+                          <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Students<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="currentStudents">Current</a>
+                                </li>
+                                <li>
+                                    <a href="allStudents">All</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>   
                         <li>
-                            <a href="students.html"><i class="fa fa-table fa-fw"></i> Students</a>
-                        </li>
-                        <li>
-                            <a href="house"><i class="fa fa-table fa-fw"></i> House Profiles</a>
+                            <a href="house"><i class="fa fa-home fa-fw"></i> House Profiles</a>
                         </li> 
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -266,8 +276,8 @@
 	
 	
 	<!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
+     <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script> 
+	
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
