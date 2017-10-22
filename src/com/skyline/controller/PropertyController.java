@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skyline.entity.Property;
 import com.skyline.entity.PropertyType;
-import com.skyline.service.PropertyPriceService;
-import com.skyline.service.PropertyService;
-import com.skyline.service.PropertyTypeService;
+import com.skyline.service.serviceInterface.PropertyPriceService;
+import com.skyline.service.serviceInterface.PropertyService;
+import com.skyline.service.serviceInterface.PropertyTypeService;
 
 
 @Controller
@@ -35,21 +35,19 @@ public class PropertyController {
 	private PropertyPriceService propertyPriceService;
 	
 	
-	@RequestMapping("house")
+	@RequestMapping("property-list")
 	public String listProperties(Model theModel){
 		
 		// get properties
 		List<Property> theProperties = propertyService.getProperties();
 		
-		// add properties to the model
 		theModel.addAttribute("properties", theProperties);
 		
-		
-		return "house_profiles";
+		return "property-list";
 	}
 
-	@GetMapping("formAddProperty")
-	public String formAddProperty(Model theModel){
+	@GetMapping("property-detail")
+	public String addProperty(Model theModel){
 		
 		Property theProperty = new Property();
 		
@@ -57,16 +55,18 @@ public class PropertyController {
 		List<PropertyType> thePropertyTypes = propertyTypeService.getPropertyTypes();
 				
 		// get new Sky Code
-		theModel.addAttribute("skyCode",propertyService.getNewSkyCode());
+		if(theProperty.getSkyCode() == null){	
+			theProperty.setSkyCode(propertyService.getNewSkyCode());
+		}
+		
 		
 		theModel.addAttribute("property",theProperty);
 		theModel.addAttribute("propertyTypes", thePropertyTypes);
 					
-		return("house_profiles-form");
+		return("property-detail");
 	}
 	
 	@PostMapping("saveProperty")
-	//@ResponseBody
 	public String saveProperty(
 			@Valid @ModelAttribute("property") Property theProperty,
 			BindingResult theBindingResult, Model theModel){
@@ -75,35 +75,27 @@ public class PropertyController {
 			
 			List<PropertyType> thePropertyTypes = propertyTypeService.getPropertyTypes();
 			theModel.addAttribute("propertyTypes", thePropertyTypes);
-			theModel.addAttribute("skyCode",propertyService.getNewSkyCode());
 			
-			
-			return"house_profiles-form";
+			return"property-detail";
 		}else{
+	
 			theProperty.setCurrentSpace(theProperty.getCapacity());
-			theProperty.setSkyCode(propertyService.getNewSkyCode());
 			
 			theProperty.getPropertyPrice().setId(propertyPriceService.getIdOfNewOrExistingPrice(theProperty));
 			
-			
-			
 			propertyService.addProperty(theProperty);
 			
-			// do stuff to show property saved pop-up
-			Property freshProperty = new Property();
-			
-			theModel.addAttribute("property",freshProperty);	
 			theModel.addAttribute("saved", true);
 			
-			return "house_profiles-form";
+			return "property-detail";
 		}
 		
 			
 	}
 	
-	// still working on it
-	@GetMapping("formUpdateProperty")
-	public String formUpdateProperty(@RequestParam("theId") int propertyId,
+	
+	@GetMapping("UpdateProperty")
+	public String updateProperty(@RequestParam("theId") int propertyId,
 			Model theModel){
 		
 	
@@ -123,15 +115,11 @@ public class PropertyController {
 		theModel.addAttribute("property", theProperty);
 		theModel.addAttribute("propertyTypes", thePropertyTypes);
 		
-		// get the Sky Code
-		theModel.addAttribute("skyCode", theProperty.getSkyCode());
-		
-		
-		return "house_profiles-form";	
+		return "property-detail";	
 	} 
 
-	@GetMapping("formDeleteProperty")
-	public String formDeleteProperty(@RequestParam("theId") int propertyId, 
+	@GetMapping("DeleteProperty")
+	public String deleteProperty(@RequestParam("theId") int propertyId, 
 			Model theModel){
 		
 		try{
@@ -140,9 +128,7 @@ public class PropertyController {
 			System.out.println("error" + e);
 		}
 		
-		theModel.addAttribute("deleted", true);
-		
-		return "redirect:/house";
+		return "redirect:/property-list";
 	}
 	
 	

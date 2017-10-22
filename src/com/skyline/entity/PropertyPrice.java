@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -19,11 +19,11 @@ public class PropertyPrice {
 	@Column(name="id")
 	private int id;
 	
-	@NotNull(message="Field is required")
+	@NotEmpty(message="Field is required")
 	@Column(name="price")
 	private String price;
 
-	@NotNull(message="Field is required")
+	@NotEmpty(message="Field is required")
 	@Column(name="comission")
 	private String comission;
 	

@@ -227,13 +227,13 @@
                                     <a href="currentStudents">Current</a>
                                 </li>
                                 <li>
-                                    <a href="allStudents">All</a>
+                                    <a href="student-list">All</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>   
                         <li>
-                            <a href="house"><i class="fa fa-home fa-fw"></i> House Profiles</a>
+                            <a href="property-list"><i class="fa fa-home fa-fw"></i> House Profiles</a>
                         </li> 
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

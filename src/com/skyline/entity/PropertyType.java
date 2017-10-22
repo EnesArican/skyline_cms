@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="property_type")
 public class PropertyType{
@@ -16,6 +18,7 @@ public class PropertyType{
 	@Column(name="id")
 	private int id;
 	
+	@NotEmpty(message="Field is required")
 	@Column(name="type")
 	private String type;
 	

@@ -13,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="property")
 public class Property{
@@ -22,16 +24,15 @@ public class Property{
 	@Column(name="id")
 	private int id;
 	
-	
 	@Column(name="sky_code")
 	private Integer skyCode;
 	
-	@NotNull(message="Field is required")
+	@NotEmpty(message="Field is required")
 	@Size(min=5, message="minimum 5 characters" )
 	@Column(name="address")
 	private String address;
 	
-	@NotNull(message="Field is required")
+	@NotEmpty(message="Field is required")
 	@Size(min=4, message="minimum 4 characters" )
 	@Column(name="post_code")
 	private String postCode;
@@ -56,9 +57,9 @@ public class Property{
 	@Column(name="current_space")
 	private String currentSpace;
 	
+	@Valid
 	@ManyToOne()
 	@JoinColumn(name="price_id")
-	@Valid
 	private PropertyPrice propertyPrice;
 	
 	
