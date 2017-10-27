@@ -7,12 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.skyline.dao.daoInterface.PropertyTypeDAO;
+import com.skyline.dao.daoInterface.PropertyTypeDao;
 import com.skyline.entity.PropertyType;
 
 
 @Repository
-public class PropertyTypeDAOImpl implements PropertyTypeDAO {
+public class PropertyTypeDaoImpl implements PropertyTypeDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

@@ -8,12 +8,14 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.skyline.dao.daoInterface.PropertyDAO;
+import com.skyline.dao.daoInterface.PropertyDao;
+import com.skyline.dao.generic.GenericDaoImpl;
 import com.skyline.entity.Property;
 
 
 @Repository
-public class PropertyDAOImpl implements PropertyDAO {
+public class PropertyDaoImpl extends GenericDaoImpl<Property> 
+						implements PropertyDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -46,9 +48,6 @@ public class PropertyDAOImpl implements PropertyDAO {
 		String sql = "SELECT GetNewskyCode(); ";
 		return (Integer) getSession().createNativeQuery(sql).uniqueResult();
 	}
-
-
-
 	
 	@Override
 	public void deleteProperty(int id) {
@@ -61,6 +60,11 @@ public class PropertyDAOImpl implements PropertyDAO {
 				
 		
 	}
+
+
+
+	
+	
 		
 }
 

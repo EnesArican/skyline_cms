@@ -3,7 +3,7 @@ package com.skyline.dao.generic;
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseDAO<T extends Serializable> {
+public interface BaseDao<T extends Serializable> {
 	
 	public void setEntity(Class<T> entityToSet);
 

@@ -5,10 +5,10 @@ import java.util.List;
 import com.skyline.entity.Property;
 
 
-public interface PropertyService{
+public interface PropertyService extends GenericService<Property>{
 
 	
-	public List<Property> getProperties();
+//	public List<Property> getProperties();
 	
 	public void addProperty(Property theProperty);
 	

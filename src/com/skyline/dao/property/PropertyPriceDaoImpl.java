@@ -5,12 +5,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.skyline.dao.daoInterface.PropertyPriceDAO;
+import com.skyline.dao.daoInterface.PropertyPriceDao;
 import com.skyline.entity.PropertyPrice;
 
 
 @Repository
-public class PropertyPriceDaoImpl implements PropertyPriceDAO {
+public class PropertyPriceDaoImpl implements PropertyPriceDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

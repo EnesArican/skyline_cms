@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class BaseDAOAbstract<T extends Serializable>{
+public abstract class BaseDaoAbstract<T extends Serializable>{
 	
 	@Autowired
 	private SessionFactory sessionFactory;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skyline.dao.daoInterface.PropertyPriceDAO;
+import com.skyline.dao.daoInterface.PropertyPriceDao;
 import com.skyline.entity.Property;
 import com.skyline.entity.PropertyPrice;
 import com.skyline.service.serviceInterface.PropertyPriceService;
@@ -13,7 +13,7 @@ import com.skyline.service.serviceInterface.PropertyPriceService;
 public class PropertyPriceServiceImpl implements PropertyPriceService {
 
 	@Autowired
-	private PropertyPriceDAO propertyPriceDao;
+	private PropertyPriceDao propertyPriceDao;
 	
 	
 	

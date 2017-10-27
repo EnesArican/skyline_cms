@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.skyline.entity.PropertyType;
 
-public interface PropertyTypeDAO{
+public interface PropertyTypeDao{
 	
 	public List<PropertyType> getPropertyTypes();
 	

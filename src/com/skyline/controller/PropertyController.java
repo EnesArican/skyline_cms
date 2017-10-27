@@ -39,7 +39,7 @@ public class PropertyController {
 	public String listProperties(Model theModel){
 		
 		// get properties
-		List<Property> theProperties = propertyService.getProperties();
+		List<Property> theProperties = propertyService.getAll();
 		
 		theModel.addAttribute("properties", theProperties);
 		

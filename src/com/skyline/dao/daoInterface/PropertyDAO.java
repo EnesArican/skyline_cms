@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.skyline.entity.Property;
 
-public interface PropertyDAO{
+public interface PropertyDao extends GenericDao <Property> {
 	
 	public List<Property> getProperties();
 	

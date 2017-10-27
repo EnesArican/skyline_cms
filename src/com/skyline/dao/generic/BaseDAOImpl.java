@@ -9,8 +9,8 @@ import org.springframework.beans.factory.config.*;
 
 @Repository
 @Scope( BeanDefinition.SCOPE_PROTOTYPE )
-public class BaseDAOImpl<T extends Serializable> 
-extends BaseDAOAbstract<T> implements BaseDAO<T> {
+public class BaseDaoImpl<T extends Serializable> 
+extends BaseDaoAbstract<T> implements BaseDao<T> {
 	
 				
 }

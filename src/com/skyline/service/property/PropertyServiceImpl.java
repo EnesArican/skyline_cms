@@ -3,29 +3,43 @@ package com.skyline.service.property;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skyline.dao.daoInterface.PropertyDAO;
+import com.skyline.dao.daoInterface.GenericDao;
+import com.skyline.dao.daoInterface.PropertyDao;
 import com.skyline.entity.Property;
+import com.skyline.service.generic.GenericServiceImpl;
 import com.skyline.service.serviceInterface.PropertyService;
 
 @Service
-public class PropertyServiceImpl implements PropertyService{
+public class PropertyServiceImpl extends GenericServiceImpl<Property>
+		implements PropertyService{
 
 	
-
-
-
+	private PropertyDao propertyDAO;
+	
+	public PropertyServiceImpl(){}
+	
 	@Autowired
-	private PropertyDAO propertyDAO;
+	public PropertyServiceImpl(
+			@Qualifier("propertyDaoImpl") GenericDao<Property> genericDao){
+		super(genericDao);
+		this.propertyDAO = (PropertyDao) genericDao;
+	}
 	
+	
+	/*
 	@Override
 	@Transactional
 	public List<Property> getProperties() {		
-		  return propertyDAO.getProperties();
+		 // return propertyDAO.getProperties();
+		return propertyDAO.getAll();
 	}
 
+	*/
+	
 	@Override
 	@Transactional
 	public void addProperty(Property theProperty) {

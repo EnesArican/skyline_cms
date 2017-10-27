@@ -2,7 +2,7 @@ package com.skyline.dao.daoInterface;
 
 import com.skyline.entity.PropertyPrice;
 
-public interface PropertyPriceDAO{
+public interface PropertyPriceDao{
 	
 	
 	public PropertyPrice findPropertyPrice(String price, String comission);
