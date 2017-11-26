@@ -51,13 +51,9 @@ $(document).ready(function () {
 		$('#deleteModalButton').attr('href', 'Delete' + entity + '?theId=' + id);
 		$('#delete').attr('data-toggle', 'modal');
 		
-		
-     
-		
-		
-		
 	}
 	
+	  
 	
 	
 	

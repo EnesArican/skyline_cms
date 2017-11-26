@@ -2,8 +2,9 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tmp" tagdir="/WEB-INF/tags"%>
 
-<%@ attribute name="rows" fragment="true" %>
-<%@ attribute name="headings" fragment="true" %> 
+
+<%@ attribute name="table" fragment="true" %> 
+<%@ attribute name="tabs" fragment="true" %> 
 
 <%@ attribute name="title"  required="true" rtexprvalue="true" %>
 <%@ attribute name="entity" required="true" rtexprvalue="true"%>
@@ -50,24 +51,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                            <div class="panel-heading">
-                           
+                           			<jsp:invoke fragment="tabs"></jsp:invoke>
                         </div>  
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                        
-                            <table width="100%" class="table table-striped table-bordered table-hover" cellspacing="0" id="template-table">
-                                <thead>
-                                    <tr>
-                                     	 <jsp:invoke fragment="headings"></jsp:invoke>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  
-                                 		 <jsp:invoke fragment="rows"></jsp:invoke>
-                                     
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
+                        <div class="panel-body">                                                   
+                                     	 <jsp:invoke fragment="table"></jsp:invoke>
                         </div>
                         <!-- /.panel-body -->
                     </div>

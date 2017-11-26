@@ -1,16 +1,13 @@
 package com.skyline.dao.property;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.skyline.dao.daoInterface.PropertyDao;
 import com.skyline.dao.generic.GenericDaoImpl;
-import com.skyline.entity.Property;
+import com.skyline.entity.property.Property;
 
 
 @Repository
@@ -25,23 +22,6 @@ public class PropertyDaoImpl extends GenericDaoImpl<Property>
 	}
 
 	
-
-	@Override
-	public List<Property> getProperties() {
-		 return getSession().
-				  createQuery("from Property", Property.class).getResultList();
-	}
-
-	@Override
-	public void saveProperty(Property property) {
-		getSession().saveOrUpdate(property);
-		
-	}
-
-	@Override
-	public Property findProperty(int id) {
-		return getSession().find( Property.class, id );
-	}
 		
 	@Override
 	public Integer getNewSkyCode() {
@@ -49,17 +29,7 @@ public class PropertyDaoImpl extends GenericDaoImpl<Property>
 		return (Integer) getSession().createNativeQuery(sql).uniqueResult();
 	}
 	
-	@Override
-	public void deleteProperty(int id) {
-		// delete object with primary key
-		Query<?> theQuery = getSession().createQuery("delete from Property where id=:propertyId");
-				
-		theQuery.setParameter("propertyId", id);
-				
-		theQuery.executeUpdate();
-				
-		
-	}
+	
 
 
 

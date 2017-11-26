@@ -10,43 +10,137 @@
 
 <tmp:template-list title="All Students" entity="student">
 
-
-
-	<jsp:attribute name="headings">
-			 <th style="display: none;"></th>
-             <th>Name</th>
-             <th>Surname</th>
-             <th>D.O.B</th>
-             <th>Mobile</th>
-             <th>Email</th>
-             <th>Address</th> 
-             <th>Start Date</th>
-             <th>End Date</th> 
-             
-            
+	<jsp:attribute name="tabs">
+	    <!-- Nav tabs -->
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#basic-details" data-toggle="tab">Basic Details</a>
+            </li>
+            <li><a href="#school" data-toggle="tab">School</a>
+            </li>
+            <li><a href="#flight" data-toggle="tab">Flight</a>
+            </li>
+            <li><a href="#next-of-kin" data-toggle="tab">Next of Kin</a>
+            </li>
+        </ul>
+        
     </jsp:attribute>
 
-	<jsp:attribute name="rows">                               
-                                    
-            <!-- loop over and print our properties -->
-			<c:forEach var="tempStudent" items="${students}">
-									
+	<jsp:attribute name="table">
+	
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="basic-details">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
+            <thead>
+                <tr>
+                 	<th style="display: none;"></th>
+		            <th>Name</th>
+                    <th>Surname</th>		
+                    <th>D.O.B</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>                                           
+                    <th>Email</th>
+                    <th>Address</th> 
+                    <th>Post Code</th>  
+                </tr>
+            </thead>
+            <tbody>          
+            <c:forEach var="tempStudent" items="${students}">									
 				<tr>
 					<td style="display: none;">${tempStudent.id}</td>
-					
 					<td>${tempStudent.name}</td>
 					<td>${tempStudent.surname}</td>
-					<td>${tempStudent.dOB}</td>
+					<td>${tempStudent.dob}</td>
+					<td>${tempStudent.gender}</td>
 					<td>${tempStudent.mobile}</td>
 					<td>${tempStudent.email}</td>
 					<td>${tempStudent.address}</td>
-					<td>${tempStudent.startDate}</td>
-					<td>${tempStudent.endDate}</td>
-											
+					<td>${tempStudent.postCode}</td>															
 				</tr>	
 				
-			</c:forEach>
-				
+			</c:forEach>                                                                		
+            </tbody>
+        </table>
+        <!-- /.table-responsive -->
+		</div>
+         
+		<div class="tab-pane fade" id="school">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
+            <thead>
+                <tr>
+					<th>Name</th>
+                    <th>Surname</th>	
+		            <th>School Name</th>
+                    <th>Address</th>		
+                    <th>postCode</th>                 
+                </tr>
+            </thead>
+            <tbody>          
+            <c:forEach var="tempStudent" items="${students}">									
+				<tr>
+					<td>${tempStudent.name}</td>
+					<td>${tempStudent.surname}</td>
+					<td>${tempStudent.studentSchool.name}</td>
+					<td>${tempStudent.studentSchool.address}</td>	
+					<td>${tempStudent.studentSchool.postCode}</td>
+				</tr>					
+			</c:forEach>                                                                		
+            </tbody>
+        </table>
+        <!-- /.table-responsive -->
+		</div> 
+		
+		
+		<div class="tab-pane fade" id="flight">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
+            <thead>
+                <tr>
+		            <th>School Name</th>
+                    <th>Address</th>		
+                    <th>postCode</th>                 
+                </tr>
+            </thead>
+            <tbody>          
+            <c:forEach var="tempStudent" items="${students}">									
+				<tr>
+					<td>${tempStudent.studentSchool.name}</td>
+					<td>${tempStudent.studentSchool.address}</td>	
+					<td>${tempStudent.studentSchool.postCode}</td>
+				</tr>					
+			</c:forEach>                                                                		
+            </tbody>
+        </table>
+		</div> 
+		
+		<div class="tab-pane fade" id="next-of-kin">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
+            <thead>
+                <tr>
+					<th>Name</th>
+                    <th>Surname</th>
+		            <th>Kin name</th>
+                    <th>Kin surname</th>		
+                    <th>Relation</th> 
+					<th>mobile</th>		
+                    <th>email</th>     
+                </tr>
+            </thead>
+            <tbody>          
+            <c:forEach var="tempStudent" items="${students}">									
+				<tr>
+					<td>${tempStudent.name}</td>
+					<td>${tempStudent.surname}</td>
+					<td>${tempStudent.kinName}</td>
+					<td>${tempStudent.kinSurname}</td>	
+					<td>${tempStudent.kinRelation}</td>
+					<td>${tempStudent.kinMobile}</td>
+					<td>${tempStudent.kinEmail}</td>		
+				</tr>					
+			</c:forEach>                                                                		
+            </tbody>
+        </table>      
+		</div> 
+			
+	</div>			
 	</jsp:attribute>
 
 </tmp:template-list>

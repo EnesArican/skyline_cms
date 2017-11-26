@@ -7,33 +7,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-
 <tmp:template-list title="Properties" entity="property">
 
-
-
-	<jsp:attribute name="headings">
-			 <th style="display: none;"></th>
-             <th>Sky-Code</th>
-             <th>Adress</th>
-             <th>Post Code</th>
-             <th>Tube Zone</th>
-             <th>Type</th> 
-             <th>Gender</th>
-             <th>Capacity</th>
-             <th>Available Space</th> 
-             <th>Price</th>
-             <th>Comission</th> 
-             
-            
-     
-    </jsp:attribute>
-
-	<jsp:attribute name="rows">                               
-                                    
-            <!-- loop over and print our properties -->
-			<c:forEach var="tempProperty" items="${properties}">
-									
+	<jsp:attribute name="table">
+		<table width="100%" class="table table-striped table-bordered table-hover" cellspacing="0" id="template-table">
+            <thead>
+                <tr>
+			        <th style="display: none;"></th>
+                    <th>Sky-Code</th>
+                    <th>Adress</th>
+                    <th>Post Code</th>
+                    <th>Tube Zone</th>
+                    <th>Type</th> 
+                    <th>Gender</th>
+                    <th>Capacity</th>
+                    <th>Available Space</th> 
+                    <th>Price</th>
+                    <th>Comission</th> 
+                </tr>
+            </thead>
+            <tbody>                                
+             <!-- loop over and print our properties -->
+			<c:forEach var="tempProperty" items="${properties}">									
 				<tr>
 					<td style="display: none;">${tempProperty.id}</td>
 					<td>SKY-
@@ -50,9 +45,11 @@
 					<td>${tempProperty.currentSpace}</td>
 					<td>${tempProperty.propertyPrice.price}</td>
 					<td>${tempProperty.propertyPrice.comission}</td>							
-				</tr>	
-				
-			</c:forEach>
+				</tr>					
+			</c:forEach>			
+			</tbody>
+        </table>
+        <!-- /.table-responsive -->    
 				
 	</jsp:attribute>
 

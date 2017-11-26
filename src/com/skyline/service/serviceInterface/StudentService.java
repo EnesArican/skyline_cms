@@ -1,6 +1,8 @@
 package com.skyline.service.serviceInterface;
 
-public interface StudentService {
+import com.skyline.entity.student.Student;;
+
+public interface StudentService extends GenericService<Student>{
 	
 	
 

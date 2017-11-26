@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +26,7 @@ public abstract class GenericDaoImpl<E>
 	public GenericDaoImpl() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
-        daoType = (Class) pt.getActualTypeArguments()[0];
+        daoType = (Class<? extends E>) pt.getActualTypeArguments()[0];
     }
 
 	protected Session currentSession() {
@@ -47,8 +48,14 @@ public abstract class GenericDaoImpl<E>
 	}
 	
 	@Override
-	public void remove(E entity){
-		currentSession().delete(entity);
+	public void remove(int id){
+		// delete object with primary key
+		Query<?> theQuery = currentSession().createQuery(
+				"delete from " + daoType.getName() +" where id=:theId");
+		 				
+		theQuery.setParameter("theId", id);
+		 				
+		theQuery.executeUpdate();
 	}
 	
 	@Override

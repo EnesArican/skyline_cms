@@ -29,5 +29,29 @@ public abstract class GenericServiceImpl<E>
         return genericDao.getAll();
     }
     
+    @Override
+    @Transactional
+    public E find(int id) {
+        return genericDao.find(id);
+    }
+    
+    @Override
+    @Transactional
+    public void saveOrUpdate(E entity){
+    	genericDao.saveOrUpdate(entity);
+    }
+	
+    @Override
+    @Transactional
+	public void remove(int id){
+    	genericDao.remove(id);
+    }
+    
+    
     
 }
+
+
+
+
+

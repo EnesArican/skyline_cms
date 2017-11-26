@@ -21,6 +21,12 @@ body {
     padding: 0 30px;
     border-left: 1px solid #e7e7e7;
   }
+  
+  .top-buffer { 
+	margin-top: 73px;
+  }
+
+  
 }
 .navbar-top-links {
   margin-right: 0;
@@ -449,10 +455,10 @@ table.dataTable thead .sorting:after {
 }
 
 .serverSideError{
-	color: red
+	color: red;
 }
 
-
-
-
+ .top-margin { 
+	margin-top: 17px;
+  }
 

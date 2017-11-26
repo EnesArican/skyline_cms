@@ -7,10 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-
 <tmp:template-list title="Properties" entity="property">
-
-
 
 	<jsp:attribute name="headings">
 			 <th style="display: none;"></th>
@@ -24,9 +21,6 @@
              <th>Available Space</th> 
              <th>Price</th>
              <th>Comission</th> 
-             
-            
-     
     </jsp:attribute>
 
 	<jsp:attribute name="rows">                               

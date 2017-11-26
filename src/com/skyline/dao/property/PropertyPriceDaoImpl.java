@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.skyline.dao.daoInterface.PropertyPriceDao;
-import com.skyline.entity.PropertyPrice;
+import com.skyline.dao.generic.GenericDaoImpl;
+import com.skyline.entity.property.PropertyPrice;
 
 
 @Repository
-public class PropertyPriceDaoImpl implements PropertyPriceDao {
+public class PropertyPriceDaoImpl extends GenericDaoImpl<PropertyPrice>
+				implements PropertyPriceDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -31,11 +33,5 @@ public class PropertyPriceDaoImpl implements PropertyPriceDao {
 										.uniqueResult();
 	}
 
-
-	
-	@Override
-	public void savePropertyPrice(PropertyPrice propertyPrice) {
-		getSession().save(propertyPrice);
-	}
 
 }

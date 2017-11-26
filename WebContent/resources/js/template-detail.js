@@ -21,12 +21,51 @@ $(document).ready(function () {
 	
 	$("#modalButton").click(function (){
 		window.location.replace(entity + "-list");
-	})
+	});
+	
+	// show/hide  airport forms
+	$('#toggle-pick-up').click(function(e){
+		e.preventDefault();
+		if($('#pickUpForm').length){			
+			$('.pickUpFormContainer').slideToggle();
+			$('#pickUpForm').detach();
+		}else{
+			$('.pickUpFormContainer').hide().html(pickUpForm);
+			$('.pickUpFormContainer').slideToggle();
+		}
+	});
+	
+	$('#toggle-drop-off').click(function(e){
+		e.preventDefault();
+		if($('#dropOffForm').length){			
+			$('.dropOffFormContainer').slideToggle();
+			$('#dropOffForm').detach();
+		}else{
+			$('.dropOffFormContainer').hide().html(dropOffForm);
+			$('.dropOffFormContainer').slideToggle();
+		}
+	});
 	
 	
+	// date picker
+	 $('.datePicker')
+     .datepicker({
+         format: 'dd/mm/yyyy'
+     })
+     .on('changeDate', function(e) {
+    	 $(this).datepicker('hide');
+     });
+	
+	// time picker
+	$('.clockpicker').clockpicker({donetext: 'Done'});
 
-	// disable HTML validation
+	// hide aiport forms when page opens.
+	var pickUpForm = $('#pickUpForm').detach();
+	var dropOffForm = $('#dropOffForm').detach();
 	
+	
+	
+	// disable HTML validation
 	$('form').submit(function(e){
 		
 		//e.preventDefault();
@@ -35,8 +74,6 @@ $(document).ready(function () {
 		var valid = {};
 		var isValid;
 		var isFormValid;
-		
-		
 		
 		var i;
 		
@@ -179,8 +216,12 @@ $(document).ready(function () {
 				if(!valid){setErrorMessage(el,'Please enter a valid number');}
 				return valid;	
 			},
-			
-			date : function (el){}						
+			// HTML does custom validation if type is called 'date'
+			custom_date : function (el){						
+				var valid = /^(\d{2}\/\d{2}\/\d{4})$/.test(el.value);
+				if(!valid){setErrorMessage(el,'Please enter a valid date');}
+				return valid;	
+			}						
 	}
 	
 	

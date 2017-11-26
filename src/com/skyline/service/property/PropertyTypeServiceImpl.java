@@ -1,32 +1,29 @@
 package com.skyline.service.property;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.skyline.dao.daoInterface.GenericDao;
 import com.skyline.dao.daoInterface.PropertyTypeDao;
-import com.skyline.entity.PropertyType;
+import com.skyline.entity.property.PropertyType;
+import com.skyline.service.generic.GenericServiceImpl;
 import com.skyline.service.serviceInterface.PropertyTypeService;
 
 @Service
-public class PropertyTypeServiceImpl implements PropertyTypeService {
+public class PropertyTypeServiceImpl extends GenericServiceImpl<PropertyType>
+		implements PropertyTypeService {
 
-	@Autowired
+	
 	private PropertyTypeDao propertyTypeDAO;
 	
+	public PropertyTypeServiceImpl(){}
 	
-	@Override
-	@Transactional
-	public List<PropertyType> getPropertyTypes() {		
-		  return propertyTypeDAO.getPropertyTypes();
+	@Autowired
+	public PropertyTypeServiceImpl(
+			@Qualifier("propertyTypeDaoImpl") GenericDao<PropertyType> genericDao){
+		super(genericDao);
+		this.propertyTypeDAO = (PropertyTypeDao) genericDao;
 	}
-
-	@Override
-	@Transactional
-	public PropertyType findOne(int id) {
-		return propertyTypeDAO.findPropertyType(id);
-	}
-
+	
+	
 }

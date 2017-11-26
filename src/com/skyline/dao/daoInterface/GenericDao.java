@@ -11,7 +11,7 @@ public interface GenericDao<E> {
 	
 	public void saveOrUpdate(E entity);
 	
-	public void remove(E entity);
+	public void remove(int id);
 	
 	
 	

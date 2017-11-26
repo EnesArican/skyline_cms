@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skyline.dao.daoInterface.PropertyPriceDao;
-import com.skyline.entity.Property;
-import com.skyline.entity.PropertyPrice;
+import com.skyline.entity.property.Property;
+import com.skyline.entity.property.PropertyPrice;
 import com.skyline.service.serviceInterface.PropertyPriceService;
 
 @Service
@@ -32,9 +32,9 @@ public class PropertyPriceServiceImpl implements PropertyPriceService {
 		
 		
 		if(thePrice == null){
-			System.out.println("no such price row. saving as new");
+			// no such price row. saving as new
 			
-			propertyPriceDao.savePropertyPrice(theProperty.getPropertyPrice());
+			propertyPriceDao.saveOrUpdate(theProperty.getPropertyPrice());
 			
 			thePrice = propertyPriceDao.findPropertyPrice(price, comission);
 			
@@ -42,7 +42,7 @@ public class PropertyPriceServiceImpl implements PropertyPriceService {
 			
 			
 		}else{			
-			System.out.println("price entity already exists");
+			// price entity already exists
 			
 			return thePrice.getId();
 			

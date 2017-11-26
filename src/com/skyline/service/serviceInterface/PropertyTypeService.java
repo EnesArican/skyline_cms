@@ -1,15 +1,8 @@
 package com.skyline.service.serviceInterface;
 
-import java.util.List;
-
-import com.skyline.entity.PropertyType;
+import com.skyline.entity.property.PropertyType;
 
 
-public interface PropertyTypeService {
+public interface PropertyTypeService extends GenericService<PropertyType>{
 
-	
-	public List<PropertyType> getPropertyTypes();
-	
-	public PropertyType findOne(int id);
-	
 }
