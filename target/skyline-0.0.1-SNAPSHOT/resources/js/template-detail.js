@@ -23,23 +23,26 @@ $(document).ready(function () {
 		window.location.replace(entity + "-list");
 	});
 	
-	
-	
-	
 	// show/hide  airport forms
-	$('#pickUpBox').click(function(){
-		if(this.checked){
-			$('.pickUpFormContainer').html(pickUpForm);
-		}else{
+	$('#toggle-pick-up').click(function(e){
+		e.preventDefault();
+		if($('#pickUpForm').length){			
+			$('.pickUpFormContainer').slideToggle();
 			$('#pickUpForm').detach();
+		}else{
+			$('.pickUpFormContainer').hide().html(pickUpForm);
+			$('.pickUpFormContainer').slideToggle();
 		}
 	});
 	
-	$('#dropOffBox').click(function(){
-		if(this.checked){
-			$('.dropOffFormContainer').html(dropOffForm);
-		}else{
+	$('#toggle-drop-off').click(function(e){
+		e.preventDefault();
+		if($('#dropOffForm').length){			
+			$('.dropOffFormContainer').slideToggle();
 			$('#dropOffForm').detach();
+		}else{
+			$('.dropOffFormContainer').hide().html(dropOffForm);
+			$('.dropOffFormContainer').slideToggle();
 		}
 	});
 	
@@ -61,6 +64,83 @@ $(document).ready(function () {
 	var dropOffForm = $('#dropOffForm').detach();
 	
 	
+	
+	// ---------------------- //
+	//    Year Calendar       //
+	// ---------------------- //
+	
+	
+	
+	// used variables
+	var startDate;
+	var currentYear = new Date().getFullYear();
+	
+	//initialize bootstrap year calendar
+	$("#year-calendar").calendar({
+		startYear: currentYear,
+		//enableContextMenu: true,
+        enableRangeSelection: true,
+        
+        clickDay: function(e) {
+        	
+        	if($('#start-date').val() && $('#end-date').val()){
+        	}else if ($('#start-date').val()){        		
+        		if(e.date >= startDate){
+        			$("#end-date").removeAttr("disabled");        	
+                	$("#end-date").val(e.date.toDateString());
+                	$("#end-date").attr("disabled", "disabled");
+                	$(e.element).addClass('selected-date'); 
+        		}
+        	}else{
+        		$("#start-date").removeAttr("disabled");        	
+            	$("#start-date").val(e.date.toDateString());
+            	$("#start-date").attr("disabled", "disabled"); 
+            	startDate = e.date;
+            	$(e.element).addClass('selected-date');
+            	 
+        	}
+        }
+	
+	 
+	});
+	
+	// clear calendar when reset button is clicked
+	$("#reset-dates").click(function (){
+		$("#start-date").val("");
+		$("#end-date").val("");
+		$("#year-calendar td").removeClass('selected-date');
+	});
+	
+	
+	$("#selected-accomodation").change(function(){
+		
+		var id = $("#selected-accomodation").val();
+		var year = $("#selected-year").text();
+		
+		var parameters = { propertyId: id, selectedYear: year};
+		
+		$.ajax({
+			method: "GET",
+			url: "GetBookedDates",
+			data: parameters,
+			//dataType: 'json',
+		}).done(function(data){
+			 console.log("SUCCESS: ", data);
+			 
+		}).fail(function(e){
+			 console.log("ERROR: ", e);
+		});
+		
+	});
+	
+		
+	
+	
+ 
+	
+	// ---------------------- //
+	//    Form Submission     //
+	// ---------------------- //
 	
 	// disable HTML validation
 	$('form').submit(function(e){
@@ -102,19 +182,7 @@ $(document).ready(function () {
 		if(isFormValid){
 			
 			var parameters = $('form').serialize();
-		/*	
-			$.ajax({
-				method: "POST",
-				url: "saveProperty",
-				data: parameters
-			}).done(function(data){
-				 console.log("SUCCESS: ", data);
-				 window.location.replace(data);
-			}).fail(function(e){
-				 console.log("ERROR: ", e);
-			});
-			
-		 */
+		
 		}
 				
 		

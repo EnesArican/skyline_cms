@@ -23,7 +23,7 @@ body {
   }
   
   .top-buffer { 
-	margin-top: 73px;
+	margin-top: 25px;
   }
 
   
@@ -463,8 +463,31 @@ table.dataTable thead .sorting:after {
   }
   
   
-.dataTables_scroll
-{
+.dataTables_scroll{
     overflow:auto;
 }
+
+
+.selected-date{
+	background-color: green;
+	color: white;
+	border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

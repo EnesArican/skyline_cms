@@ -9,25 +9,26 @@
 
 <tmp:template-list title="Properties" entity="property">
 
-	<jsp:attribute name="headings">
-			 <th style="display: none;"></th>
-             <th>Sky-Code</th>
-             <th>Adress</th>
-             <th>Post Code</th>
-             <th>Tube Zone</th>
-             <th>Type</th> 
-             <th>Gender</th>
-             <th>Capacity</th>
-             <th>Available Space</th> 
-             <th>Price</th>
-             <th>Comission</th> 
-    </jsp:attribute>
-
-	<jsp:attribute name="rows">                               
-                                    
-            <!-- loop over and print our properties -->
-			<c:forEach var="tempProperty" items="${properties}">
-									
+	<jsp:attribute name="table">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
+            <thead>
+                <tr>
+			        <th style="display: none;"></th>
+                    <th>Sky-Code</th>
+                    <th>Adress</th>
+                    <th>Post Code</th>
+                    <th>Tube Zone</th>
+                    <th>Type</th> 
+                    <th>Gender</th>
+                    <th>Capacity</th>
+                    <th>Available Space</th> 
+                    <th>Price</th>
+                    <th>Comission</th> 
+                </tr>
+            </thead>
+            <tbody>                                
+             <!-- loop over and print our properties -->
+			<c:forEach var="tempProperty" items="${properties}">									
 				<tr>
 					<td style="display: none;">${tempProperty.id}</td>
 					<td>SKY-
@@ -42,11 +43,13 @@
 					<td>${tempProperty.gender}</td>
 					<td>${tempProperty.capacity}</td>
 					<td>${tempProperty.currentSpace}</td>
-					<td>${tempProperty.propertyPrice.price}</td>
-					<td>${tempProperty.propertyPrice.comission}</td>							
-				</tr>	
-				
-			</c:forEach>
+					<td>${tempProperty.price.price}</td>
+					<td>${tempProperty.price.comission}</td>							
+				</tr>					
+			</c:forEach>			
+			</tbody>
+        </table>
+        <!-- /.table-responsive -->    
 				
 	</jsp:attribute>
 

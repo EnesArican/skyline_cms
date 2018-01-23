@@ -25,4 +25,5 @@ public class StudentServiceImpl extends GenericServiceImpl<Student>
 		this.studentDAO = (StudentDao) genericDao;
 	}
 	
+	
 }

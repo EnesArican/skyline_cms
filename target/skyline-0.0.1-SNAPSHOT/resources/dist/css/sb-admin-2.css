@@ -23,7 +23,7 @@ body {
   }
   
   .top-buffer { 
-	margin-top: 73px;
+	margin-top: 25px;
   }
 
   
@@ -450,7 +450,7 @@ table.dataTable thead .sorting:after {
 }
 
 #btnFormSubmit{
-	width: 93px;
+	width: 103px;
 	
 }
 
@@ -461,4 +461,35 @@ table.dataTable thead .sorting:after {
  .top-margin { 
 	margin-top: 17px;
   }
+  
+  
+.dataTables_scroll{
+    overflow:auto;
+}
+
+
+.selected-date{
+	background-color: green;
+	color: white;
+	border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

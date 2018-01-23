@@ -1,5 +1,7 @@
 package com.skyline.entity.property;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,16 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+
 @Entity
 @Table(name="property")
-public class Property{
+public class Property implements Comparable<Property>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -54,21 +56,21 @@ public class Property{
 	@Column(name="capacity")
 	private String capacity;
 	
-	@Column(name="current_space")
-	private String currentSpace;
+	@NotNull(message="Field is required")
+	@JoinColumn(name="price")
+	private BigDecimal price;
 	
-	@Valid
-	@ManyToOne()
-	@JoinColumn(name="price_id")
-	private PropertyPrice propertyPrice;
+	@NotNull(message="Field is required")
+	@JoinColumn(name="commission")
+	private BigDecimal commission;
 	
 	
 	public Property(){
 		
 	}
-	public Property(Integer skyCode, String address, String postCode, Integer tubeZone, PropertyType propertyType, String gender,
-			String capacity, String currentSpace, PropertyPrice propertyPrice) {
-
+	public Property(int id, Integer skyCode, String address, String postCode, Integer tubeZone,
+			PropertyType propertyType, String gender, String capacity, BigDecimal price, BigDecimal commission) {
+		this.id = id;
 		this.skyCode = skyCode;
 		this.address = address;
 		this.postCode = postCode;
@@ -76,10 +78,11 @@ public class Property{
 		this.propertyType = propertyType;
 		this.gender = gender;
 		this.capacity = capacity;
-		this.currentSpace = currentSpace;
-		this.propertyPrice = propertyPrice;
+		this.price = price;
+		this.commission = commission;
 	}
-	
+
+
 	public int getId() {
 		return id;
 	}
@@ -128,17 +131,22 @@ public class Property{
 	public void setCapacity(String capacity) {
 		this.capacity = capacity;
 	}
-	public String getCurrentSpace() {
-		return currentSpace;
+	public BigDecimal getPrice() {
+		return price;
 	}
-	public void setCurrentSpace(String currentSpace) {
-		this.currentSpace = currentSpace;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
-	public PropertyPrice getPropertyPrice() {
-		return propertyPrice;
+	public BigDecimal getCommission() {
+		return commission;
 	}
-	public void setPropertyPrice(PropertyPrice propertyPrice) {
-		this.propertyPrice = propertyPrice;
+	public void setCommission(BigDecimal commission) {
+		this.commission = commission;
+	}
+	@Override
+	public int compareTo(Property compareProperty) {
+		int compareSkyCode = compareProperty.getSkyCode();
+		return this.skyCode - compareSkyCode;
 	}
 	
 		

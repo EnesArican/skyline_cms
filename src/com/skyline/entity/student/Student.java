@@ -3,10 +3,10 @@ package com.skyline.entity.student;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +14,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="student")
@@ -36,6 +41,8 @@ public class Student {
 	@Column(name="surname")
 	private String surname;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	@NotNull(message="Field is required")
 	@Column(name="dob")
 	private Date dob;
@@ -85,14 +92,20 @@ public class Student {
 	@Column(name="kin_email")
 	private String kinEmail;
 	
-	@OneToMany(mappedBy="student", cascade=CascadeType.ALL)
-	//@JoinColumn(name="student_id", referencedColumnName="id")
-	private List<StudentFlight> studentFlights;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="student" ,cascade=CascadeType.ALL)
+	//@JoinColumn(name="student_flight_id")
+	private List<StudentFlight> studentFlight;
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade=CascadeType.ALL, orphanRemoval = true)
+	//@JoinColumn(name="student_id", referencedColumnName="id")
+	private List<StudentAccomodation> studentAccomodations;
+	
 	public Student(){}	
 	public Student(int id, String name, String surname, Date dob, String gender, String mobile, String email,
 			String address, String postCode, StudentSchool studentSchool, String kinName, String kinSurname,
-			String kinRelation, String kinMobile, String kinEmail) {
+			String kinRelation, String kinMobile, String kinEmail, List<StudentFlight> studentFlight,
+			List<StudentAccomodation> studentAccomodations) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -108,6 +121,8 @@ public class Student {
 		this.kinRelation = kinRelation;
 		this.kinMobile = kinMobile;
 		this.kinEmail = kinEmail;
+		this.studentFlight = studentFlight;
+		this.studentAccomodations = studentAccomodations;
 	}
 
 	public int getId() {
@@ -200,30 +215,34 @@ public class Student {
 	public void setKinEmail(String kinEmail) {
 		this.kinEmail = kinEmail;
 	}
-	public List<StudentFlight> getStudentFlights() {
-		return studentFlights;
+	public List<StudentFlight> getStudentFlight() {
+		return studentFlight;
 	}
-	public void setStudentFlights(List<StudentFlight> studentFlights) {
-		this.studentFlights = studentFlights;
+	public void setStudentFlight(List<StudentFlight> studentFlight) {
+		this.studentFlight = studentFlight;
+	}
+	public List<StudentAccomodation> getStudentAccomodations() {
+		return studentAccomodations;
+	}
+	public void setStudentAccomodations(List<StudentAccomodation> studentAccomodations) {
+		this.studentAccomodations = studentAccomodations;
 	}
 
+	
 	// add convenience methods for bi-directional relationship
 	
 	public void addFlight(StudentFlight tempStudentFlight){
 		
-		if (studentFlights == null){
-			studentFlights = new ArrayList<>();
+		if (studentFlight == null){
+			studentFlight = new ArrayList<>();
 		}
 		
-		studentFlights.add(tempStudentFlight);
+		studentFlight.add(tempStudentFlight);
 		
-		tempStudentFlight.setStudent(this);
+		//tempStudentFlight.setStudent(this);
 	}
 	
 	
-	public StudentFlight getFlight(int id){
-		return this.studentFlights.get(id);
-	}
 	
 }
 

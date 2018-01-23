@@ -1,6 +1,5 @@
 com\skyline\controller\HomeController.class
 com\skyline\dao\daoInterface\PropertyTypeDao.class
-com\skyline\service\serviceInterface\PropertyPriceService.class
 com\skyline\dao\property\PropertyDaoImpl.class
 com\skyline\service\serviceInterface\GenericService.class
 com\skyline\entity\property\PropertyType.class
@@ -8,19 +7,15 @@ com\skyline\entity\student\StudentSchool.class
 com\skyline\service\generic\GenericServiceImpl.class
 com\skyline\service\serviceInterface\PropertyService.class
 com\skyline\dao\daoInterface\PropertyDao.class
-com\skyline\dao\daoInterface\PropertyPriceDao.class
 com\skyline\dao\daoInterface\GenericDao.class
 com\skyline\controller\PropertyController.class
 com\skyline\dao\generic\GenericDaoImpl.class
-com\skyline\entity\property\PropertyPrice.class
 com\skyline\dao\property\PropertyTypeDaoImpl.class
 com\skyline\service\property\PropertyTypeServiceImpl.class
 com\skyline\service\serviceInterface\PropertyTypeService.class
 com\skyline\service\serviceInterface\StudentService.class
 com\skyline\entity\student\StudentFlight.class
 com\skyline\entity\property\Property.class
-com\skyline\service\property\PropertyPriceServiceImpl.class
-com\skyline\dao\property\PropertyPriceDaoImpl.class
 com\skyline\entity\student\Student.class
 com\skyline\controller\StudentController.class
 com\skyline\service\property\PropertyServiceImpl.class

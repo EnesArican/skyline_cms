@@ -8,10 +8,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<tmp:template-detail title="Property-Add" entity="property">
+<tmp:template-detail title="Property-Add" entity="property" saved="${saved}">
 	<jsp:attribute name="formDetails">									
          <form:form role="form" action="saveProperty" modelAttribute="property" method="POST" novalidate="true">                        
-         	<div class="col-lg-12">   
+         	<div class="col-md-6 col-md-offset-3">   
          		<!--  need to associate this data with property id -->
 	 	 		<form:hidden path="id" />
 	            <form:hidden path="skyCode" />                             			 		                                               	                                                                        
@@ -20,12 +20,16 @@
 					<c:if test="${property.skyCode < 10}">0</c:if>
 					${property.skyCode}</h3>                                                                                                                                                           
            </div> 	                       
-           <div class="col-lg-6">                                                            	                                                                            
-           	             	<div class="form-group">
-                                 <label>Address</label>
-                                 <form:input path="address" required="true" type="text" class="form-control" />
-                                 <form:errors path="address" cssClass="serverSideError" />                                            
-                           </div>                    
+           <div class="col-md-6 col-md-offset-3">
+				<div class="row">
+					<div class="col-md-12">
+           	            	<div class="form-group">
+                                <label>Address</label>
+                                <form:input path="address" required="true" type="text" class="form-control" />
+                                <form:errors path="address" cssClass="serverSideError" />                                            
+                           </div>  
+					</div>            
+                </div> 							
                 <div class="row">
                      <div class="col-md-6">     	
                       		<div class="form-group">
@@ -79,7 +83,7 @@
                 <!-- /row -->                                                                                                                                                                                                                                                          
            </div>
            <!-- /.col-lg-6 (nested) -->                               
-           <div class="col-lg-6">                              	
+           <div class="col-md-6 col-md-offset-3">                              	
                 <div class="row">
                       <div class="col-md-6">                                        
                              <div class="form-group">
@@ -101,21 +105,18 @@
                             <label>Price</label>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">£</span>
-                                <form:input path="propertyPrice.price" required="true" type="number" class="form-control" /> 
-                                <form:errors path="propertyPrice.price" cssClass="serverSideError" />                                                                                  
+                                <form:input path="price.price" required="true" type="number" class="form-control" /> 
+                                <form:errors path="price.price" cssClass="serverSideError" />                                                                                  
                                 <span class="input-group-addon">.00</span>                                            
                             </div>                                                                                                                                                   
                      </div> 
-                     <!-- col-md-6 -->	                         
-                 </div> 
-                 <!-- /row -->                                                   
-                 <div class="row">                                                                                                                       					                                                                                                                                                                                                                                                              			
-                      <div class="col-md-6">                           
+                     <!-- col-md-6 -->	                                                                                                                                                              					                                                                                                                                                                                                                                                              			
+                     <div class="col-md-6">                           
                              <label>Comission</label>
                              <div class="form-group input-group">
                                    <span class="input-group-addon">£</span>
-                                   <form:input path="propertyPrice.comission" required="true" type="number" class="form-control" />
-                                   <form:errors path="propertyPrice.comission" cssClass="serverSideError" />            
+                                   <form:input path="price.comission" required="true" type="number" class="form-control" />
+                                   <form:errors path="price.comission" cssClass="serverSideError" />            
                                    <span class="input-group-addon">.00</span>                                                                                                                                               
                              </div>                                                                 	
                       </div> 
@@ -123,37 +124,15 @@
                  </div> 
                  <!-- /row -->	                       
                  <div class="row">
-                      <div class="col-md-6">
-                      </div>
-                      <div class="col-md-6">
-                         	<button type="submit" class="btn btn-outline btn-primary" id="btnFormSubmit">Save</button>                                    
+                      <div class="col-md-2 col-md-offset-10 top-margin">
+                         	<button type="submit" class="btn btn-outline btn-primary pull-right" id="btnFormSubmit">Save</button>                                    
                       </div>
                  </div>                                                    
             </div>
             <!-- /.col-lg-6 (nested) -->                                                
          </form:form>
          <!-- /form -->
-               
-         <c:if test="${saved == true}">                                
-             <!-- Modal -->
-			 <div id="myModal" class="modal fade" role="dialog">
-  				   <div class="modal-dialog">
-    					<!-- Modal content-->
-    					<div class="modal-content">
-      						 <div class="modal-header alert alert-success">
-        						<h4 class="modal-title">Property Added</h4>
-      						 </div>
-      						 <div class="modal-body">
-        						<p>The property has been successfully added to the database.</p>
-      						 </div>
-      					     <div class="modal-footer">
-        					    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalButton">Close</button>
-      					    </div>
-    				    </div>
-  			 	   </div>
-			 </div>                                                              
-           </c:if>
-           
+                  
 	</jsp:attribute>
 </tmp:template-detail>
 

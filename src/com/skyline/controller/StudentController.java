@@ -1,5 +1,6 @@
 package com.skyline.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skyline.entity.property.Property;
 import com.skyline.entity.student.Student;
+import com.skyline.entity.student.StudentAccomodation;
+import com.skyline.service.serviceInterface.PropertyService;
 import com.skyline.service.serviceInterface.StudentService;
 
 @Controller
@@ -24,6 +27,9 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
+	@Autowired
+	private PropertyService propertyService;
+	
 	@RequestMapping("student-list")
 	public String listStudents(Model theModel){
 		
@@ -37,11 +43,14 @@ public class StudentController {
 	
 	@GetMapping("student-detail")
 	public String addStudent(Model theModel){
-		
-		
+	
 	Student theStudent = new Student();	
+	List<Property> theProperties = propertyService.getAll();
+	
+	Collections.sort(theProperties);
 	
 	theModel.addAttribute("student",theStudent);
+	theModel.addAttribute("properties", theProperties);
 		
 		return "student-detail";
 	}
@@ -52,12 +61,21 @@ public class StudentController {
 			BindingResult theBindingResult, Model theModel){
 		
 		
+		System.out.println(theBindingResult);
+		
 		if(theBindingResult.hasErrors()){
+			
+			System.out.println("binding result has errors.");
+			
+			List<Property> theProperties = propertyService.getAll();
+			Collections.sort(theProperties);
+			theModel.addAttribute("properties", theProperties);
 			
 			return"student-detail";
 		}else{	
-			studentService.saveOrUpdate(theStudent);			
-			return "redirect:/displayProperty?theId=" + theStudent.getId() + "&saved=1";
+			studentService.saveOrUpdate(theStudent);
+			
+			return "redirect:/displayStudent?theId=" + theStudent.getId() + "&saved=1";
 		}			
 	}
 
@@ -71,7 +89,12 @@ public class StudentController {
 			theModel.addAttribute("saved", true); 
 		}	
 		
+		List<Property> theProperties = propertyService.getAll();
+		Collections.sort(theProperties);
+		
 		theModel.addAttribute("student", theStudent);
+		theModel.addAttribute("properties", theProperties);
+		
 		
 		return "student-detail";	
 	} 

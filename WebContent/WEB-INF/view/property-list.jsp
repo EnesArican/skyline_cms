@@ -10,7 +10,7 @@
 <tmp:template-list title="Properties" entity="property">
 
 	<jsp:attribute name="table">
-		<table width="100%" class="table table-striped table-bordered table-hover" cellspacing="0" id="template-table">
+		<table width="100%" class="table table-striped table-bordered table-hover template-table" cellspacing="0">
             <thead>
                 <tr>
 			        <th style="display: none;"></th>
@@ -21,9 +21,8 @@
                     <th>Type</th> 
                     <th>Gender</th>
                     <th>Capacity</th>
-                    <th>Available Space</th> 
                     <th>Price</th>
-                    <th>Comission</th> 
+                    <th>Commission</th> 
                 </tr>
             </thead>
             <tbody>                                
@@ -42,9 +41,8 @@
 					<td>${tempProperty.propertyType.type}</td>
 					<td>${tempProperty.gender}</td>
 					<td>${tempProperty.capacity}</td>
-					<td>${tempProperty.currentSpace}</td>
-					<td>${tempProperty.propertyPrice.price}</td>
-					<td>${tempProperty.propertyPrice.comission}</td>							
+					<td>${tempProperty.price}</td>
+					<td>${tempProperty.commission}</td>							
 				</tr>					
 			</c:forEach>			
 			</tbody>

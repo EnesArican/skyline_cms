@@ -5,5 +5,5 @@ import com.skyline.entity.student.Student;;
 public interface StudentService extends GenericService<Student>{
 	
 	
-
+	
 }

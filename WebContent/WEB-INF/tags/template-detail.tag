@@ -3,6 +3,7 @@
 <%@ taglib prefix="tmp" tagdir="/WEB-INF/tags"%>
 
 <%@ attribute name="formDetails" fragment="true"%>
+<%@ attribute name="tabs" fragment="true" %> 
  
 <%@ attribute name="title"  required="true" rtexprvalue="true" %>
 <%@ attribute name="entity" required="true" rtexprvalue="true"%>
@@ -18,6 +19,8 @@
 	<jsp:attribute name="header">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/dist/css/bootstrap-clockpicker.min.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/calendar/bootstrap-year-calendar.min.css">
+		
 	</jsp:attribute>
 	
 
@@ -37,12 +40,13 @@
            
             
             <div class="row">
+            	<c:if test="${saved == true}">                                
+            				<h1>Saved</h1>
+           		</c:if>
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                            <div class="panel-heading">
-                            <c:if test="${saved == true}">                                
-            				<h1>Saved</h1>
-           					</c:if>
+                            		<jsp:invoke fragment="tabs"></jsp:invoke>
                            </div>
                            <!-- /panel heading -->
                             <div class="panel-body">
@@ -69,6 +73,7 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/template-detail.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/dist/js/bootstrap-clockpicker.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/vendor/calendar/bootstrap-year-calendar.js"></script>
     </jsp:attribute>
 
 </tmp:template-general>

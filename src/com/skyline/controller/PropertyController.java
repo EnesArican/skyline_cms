@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skyline.entity.property.Property;
 import com.skyline.entity.property.PropertyType;
-import com.skyline.service.serviceInterface.PropertyPriceService;
 import com.skyline.service.serviceInterface.PropertyService;
 import com.skyline.service.serviceInterface.PropertyTypeService;
 
@@ -31,9 +30,6 @@ public class PropertyController {
 	@Autowired
 	private PropertyTypeService propertyTypeService;
 
-	@Autowired
-	private PropertyPriceService propertyPriceService;
-	
 	@RequestMapping("property-list")
 	public String listProperties(Model theModel){
 		
@@ -75,9 +71,7 @@ public class PropertyController {
 			theModel.addAttribute("propertyTypes", thePropertyTypes);
 			
 			return"property-detail";
-		}else{
-			theProperty.setCurrentSpace(theProperty.getCapacity());			
-			theProperty.getPropertyPrice().setId(propertyPriceService.getIdOfNewOrExistingPrice(theProperty));
+		}else{		
 			propertyService.saveOrUpdate(theProperty);
 			
 			return "redirect:/displayProperty?theId=" + theProperty.getId() + "&saved=1";
@@ -95,13 +89,13 @@ public class PropertyController {
 		List<PropertyType> thePropertyTypes = propertyTypeService.getAll();
 				
 		// fix number format of prices
-		String theComission = theProperty.getPropertyPrice().getComission();
-		theComission = theComission.substring(0, theComission.length()- 3);	
-		theProperty.getPropertyPrice().setComission(theComission);
+		//String theComission = theProperty.getPrice().getComission();
+		//theComission = theComission.substring(0, theComission.length()- 3);	
+		//theProperty.getPrice().setComission(theComission);
 		
-		String thePrice = theProperty.getPropertyPrice().getPrice();
-		thePrice = thePrice.substring(0, thePrice.length() - 3);
-		theProperty.getPropertyPrice().setPrice(thePrice);
+		//String thePrice = theProperty.getPrice().getPrice();
+		//thePrice = thePrice.substring(0, thePrice.length() - 3);
+		//theProperty.getPrice().setPrice(thePrice);
 		
 		if(saved){
 			theModel.addAttribute("saved", true); 
@@ -128,3 +122,10 @@ public class PropertyController {
 	
 	
 }
+
+
+
+
+
+
+
