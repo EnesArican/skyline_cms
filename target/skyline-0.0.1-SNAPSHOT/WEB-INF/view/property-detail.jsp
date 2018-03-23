@@ -105,9 +105,8 @@
                             <label>Price</label>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">£</span>
-                                <form:input path="price.price" required="true" type="number" class="form-control" /> 
-                                <form:errors path="price.price" cssClass="serverSideError" />                                                                                  
-                                <span class="input-group-addon">.00</span>                                            
+                                <form:input path="price" required="true" type="number" class="form-control" /> 
+                                <form:errors path="price" cssClass="serverSideError" />                                                                                                                              
                             </div>                                                                                                                                                   
                      </div> 
                      <!-- col-md-6 -->	                                                                                                                                                              					                                                                                                                                                                                                                                                              			
@@ -115,9 +114,8 @@
                              <label>Comission</label>
                              <div class="form-group input-group">
                                    <span class="input-group-addon">£</span>
-                                   <form:input path="price.comission" required="true" type="number" class="form-control" />
-                                   <form:errors path="price.comission" cssClass="serverSideError" />            
-                                   <span class="input-group-addon">.00</span>                                                                                                                                               
+                                   <form:input path="commission" required="true" type="number" class="form-control" />
+                                   <form:errors path="commission" cssClass="serverSideError" />                                                                                                                                                           
                              </div>                                                                 	
                       </div> 
                       <!-- col-md-6 -->     

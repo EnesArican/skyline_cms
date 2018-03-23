@@ -21,9 +21,8 @@
                     <th>Type</th> 
                     <th>Gender</th>
                     <th>Capacity</th>
-                    <th>Available Space</th> 
                     <th>Price</th>
-                    <th>Comission</th> 
+                    <th>Commission</th> 
                 </tr>
             </thead>
             <tbody>                                
@@ -42,9 +41,8 @@
 					<td>${tempProperty.propertyType.type}</td>
 					<td>${tempProperty.gender}</td>
 					<td>${tempProperty.capacity}</td>
-					<td>${tempProperty.currentSpace}</td>
-					<td>${tempProperty.price.price}</td>
-					<td>${tempProperty.price.comission}</td>							
+					<td>${tempProperty.price}</td>
+					<td>${tempProperty.commission}</td>							
 				</tr>					
 			</c:forEach>			
 			</tbody>

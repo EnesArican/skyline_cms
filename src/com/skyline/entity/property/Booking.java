@@ -2,13 +2,10 @@ package com.skyline.entity.property;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-
 
 public class Booking {
 
 	//private String name;
-	
 	//private String surname;
 	
 	private Date startDate;

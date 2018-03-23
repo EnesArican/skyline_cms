@@ -176,7 +176,7 @@
 			</div>
 			<c:set var = "propertiesCount" scope = "session" value = "${0}"/>
 			<c:forEach items="${student.studentAccomodations}" varStatus="loop">
-			<form:hidden path="studentAccomodations[${loop.index}].id" />
+			<form:hidden path="studentAccomodations[${loop.index}].id" id="student-accomodation-id-${loop.index}"/>
 			<div class="row" id="property-row-${loop.index}">
 				<div class="col-md-3">
 					<div class="form-group">

@@ -1,6 +1,5 @@
 package com.skyline.entity.student;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -94,11 +93,9 @@ public class Student {
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="student" ,cascade=CascadeType.ALL)
-	//@JoinColumn(name="student_flight_id")
 	private List<StudentFlight> studentFlight;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade=CascadeType.ALL, orphanRemoval = true)
-	//@JoinColumn(name="student_id", referencedColumnName="id")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade=CascadeType.ALL)
 	private List<StudentAccomodation> studentAccomodations;
 	
 	public Student(){}	
@@ -227,22 +224,6 @@ public class Student {
 	public void setStudentAccomodations(List<StudentAccomodation> studentAccomodations) {
 		this.studentAccomodations = studentAccomodations;
 	}
-
-	
-	// add convenience methods for bi-directional relationship
-	
-	public void addFlight(StudentFlight tempStudentFlight){
-		
-		if (studentFlight == null){
-			studentFlight = new ArrayList<>();
-		}
-		
-		studentFlight.add(tempStudentFlight);
-		
-		//tempStudentFlight.setStudent(this);
-	}
-	
-	
 	
 }
 

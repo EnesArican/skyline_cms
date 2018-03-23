@@ -136,24 +136,41 @@
                 <tr>
                 	<th style="display: none;"></th>
 		            <th>Name</th>
-                    <th>Surname</th>		
-                    <th>Airport (Pick Up)</th>
-                    <th>Flight Numner</th>
-                    <th>Airport (Drop Off)</th>                 
+                    <th>Surname</th>
+                    <th>Pick up / Drop off</th>
+                    <th>Date</th>
+                    <th>Time</th>		
+                    <th>Airport</th>
+                    <th>Flight Number</th>               
                 </tr>
             </thead>
             <tbody>          
             <c:forEach var="tempStudent" items="${students}">	
-            	<c:forEach var="tempFlight" items="${tempStudent.studentFlight}">					
+            	<c:forEach var="tempFlight" items="${tempStudent.studentFlight}">
+            	<c:if test="${not empty tempFlight.pickupAirport}">					
 				<tr>
 					<td style="display: none;">${tempStudent.id}</td>
 					<td>${tempStudent.name}</td>
 					<td>${tempStudent.surname}</td>
+					<td>Pick up</td>
+					<td>${tempFlight.pickupDate}</td>
+					<td>${tempFlight.pickupTime}</td>
 					<td>${tempFlight.pickupAirport}</td>
 					<td>${tempFlight.pickupFlightNumber}</td>
-					
-					<td>${tempFlight.dropoffAirport}</td>
 				</tr>					
+				</c:if>
+				<c:if test="${ not empty tempFlight.dropoffAirport}">					
+				<tr>
+					<td style="display: none;">${tempStudent.id}</td>
+					<td>${tempStudent.name}</td>
+					<td>${tempStudent.surname}</td>
+					<td>Drop off</td>
+					<td>${tempFlight.dropoffDate}</td>
+					<td>${tempFlight.dropoffTime}</td>
+					<td>${tempFlight.dropoffAirport}</td>
+					<td>${tempFlight.dropoffFlightNumber}</td>
+				</tr>					
+				</c:if>
 			</c:forEach>        
 			</c:forEach>                                                                		                                                        		
             </tbody>

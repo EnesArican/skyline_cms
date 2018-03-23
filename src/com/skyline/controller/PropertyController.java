@@ -32,21 +32,14 @@ public class PropertyController {
 
 	@RequestMapping("property-list")
 	public String listProperties(Model theModel){
-		
-		// get properties
 		List<Property> theProperties = propertyService.getAll();
-		
 		theModel.addAttribute("properties", theProperties);
-		
 		return "property-list";
 	}
 
 	@GetMapping("property-detail")
 	public String addProperty(Model theModel){
-		
 		Property theProperty = new Property();
-		
-		// get property types
 		List<PropertyType> thePropertyTypes = propertyTypeService.getAll();
 				
 		// get new Sky Code
@@ -54,10 +47,8 @@ public class PropertyController {
 			theProperty.setSkyCode(propertyService.getNewSkyCode());
 		}
 		
-		
 		theModel.addAttribute("property",theProperty);
-		theModel.addAttribute("propertyTypes", thePropertyTypes);
-					
+		theModel.addAttribute("propertyTypes", thePropertyTypes);			
 		return("property-detail");
 	}
 	
@@ -68,16 +59,12 @@ public class PropertyController {
 		
 		if(theBindingResult.hasErrors()){			
 			List<PropertyType> thePropertyTypes = propertyTypeService.getAll();
-			theModel.addAttribute("propertyTypes", thePropertyTypes);
-			
+			theModel.addAttribute("propertyTypes", thePropertyTypes);		
 			return"property-detail";
 		}else{		
 			propertyService.saveOrUpdate(theProperty);
-			
 			return "redirect:/displayProperty?theId=" + theProperty.getId() + "&saved=1";
-		}
-		
-			
+		}		
 	}
 	
 	// need to pass a parameter - boolean saved.
@@ -88,22 +75,12 @@ public class PropertyController {
 		Property theProperty = propertyService.find(propertyId);
 		List<PropertyType> thePropertyTypes = propertyTypeService.getAll();
 				
-		// fix number format of prices
-		//String theComission = theProperty.getPrice().getComission();
-		//theComission = theComission.substring(0, theComission.length()- 3);	
-		//theProperty.getPrice().setComission(theComission);
-		
-		//String thePrice = theProperty.getPrice().getPrice();
-		//thePrice = thePrice.substring(0, thePrice.length() - 3);
-		//theProperty.getPrice().setPrice(thePrice);
-		
 		if(saved){
 			theModel.addAttribute("saved", true); 
 		}	
 		
 		theModel.addAttribute("property", theProperty);
 		theModel.addAttribute("propertyTypes", thePropertyTypes);
-		
 		return "property-detail";	
 	} 
 
@@ -115,11 +92,9 @@ public class PropertyController {
 		    propertyService.remove(propertyId);	
 		}catch(EjbAccessException e){
 			System.out.println("error" + e);
-		}
-		
+		}	
 		return "redirect:/property-list";
 	}
-	
 	
 }
 

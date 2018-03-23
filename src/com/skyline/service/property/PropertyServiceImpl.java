@@ -27,9 +27,6 @@ public class PropertyServiceImpl extends GenericServiceImpl<Property>
 		this.propertyDAO = (PropertyDao) genericDao;
 	}
 	
-	
-	
-	
 	@Override
 	@Transactional
 	public Integer getNewSkyCode() {

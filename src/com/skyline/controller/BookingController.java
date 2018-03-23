@@ -17,8 +17,7 @@ public class BookingController {
 
 	@Autowired
 	private BookingService bookingService;
-	
-	
+		
 	@GetMapping("GetBookedDates")     
 	@ResponseBody
 	public String GetBookings(@RequestParam("propertyId") int propertyId, @RequestParam("selectedYear") int year, 

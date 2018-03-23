@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.skyline.dao.daoInterface.StudentDao;
 import com.skyline.dao.generic.GenericDaoImpl;
 import com.skyline.entity.student.Student;
-import com.skyline.entity.student.StudentAccomodation;
 import com.skyline.entity.student.StudentFlight;;
 
 
@@ -26,10 +25,6 @@ public class StudentDaoImpl extends GenericDaoImpl<Student>
 	@Override
 	public void saveOrUpdate(Student student){		
 		
-		for(StudentAccomodation sa: student.getStudentAccomodations()){
-			sa.setStudent(student);
-		}
-		
 		// used to remove unnecesary data
 		// can improve
 		StudentFlight studentF = student.getStudentFlight().get(0);
@@ -37,14 +32,10 @@ public class StudentDaoImpl extends GenericDaoImpl<Student>
 			student.getStudentFlight().remove(0);
 		}
 		
-		
 		for(StudentFlight sf: student.getStudentFlight()){
-			
-			System.out.println(sf.toString());
 			sf.setStudent(student);
 		}
 		
-		System.out.println("near the end of method");
 		currentSession().saveOrUpdate(student);;
 	}
 }
